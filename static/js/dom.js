@@ -11,17 +11,25 @@ let dom = {
 
 
         for (let i = 0; i < boards.length ; i++) {
+
+            let new_board = document.createElement("div");
+            new_board.className = "box" ;
+            new_board.id = [i];
+            document.getElementById("container").appendChild(new_board);
+
+
             let newId = document.createElement("div");
             newId.innerText = boards[i]['id'];
-            document.getElementById("boards").appendChild(newId);
+            document.getElementById(i).appendChild(newId);
 
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
-            document.getElementById("boards").appendChild(newTitle);
+            document.getElementById(i).appendChild(newTitle);
 
             let newState = document.createElement("div");
             newState.innerText = boards[i]['is_active'];
-            document.getElementById("boards").appendChild(newState);
+            document.getElementById(i).appendChild(newState);
+
 
 
 
