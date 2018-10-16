@@ -9,13 +9,6 @@ let dom = {
 
     showBoards: function (boards) {
 
-        const addBoardButton = document.createElement("div");
-        addBoardButton.innerText = "Create new board";
-        document.body.appendChild(addBoardButton);
-        addBoardButton.addEventListener("click", function () {
-           let nameOfNewBoard = prompt("Please enter the name of the board!", "New board")
-            dataHandler.createNewBoard(nameOfNewBoard)
-        });
 
         for (let i = 0; i < boards.length ; i++) {
 
@@ -47,7 +40,17 @@ let dom = {
         // it adds necessary event listeners also
     },
 
+    setupCreateBoard: function(){
 
+        const addBoardButton = document.createElement("div");
+        addBoardButton.innerText = "Create new board";
+        document.body.appendChild(addBoardButton);
+        addBoardButton.addEventListener("click", function () {
+           let nameOfNewBoard = prompt("Please enter the name of the board!", "New board");
+            dataHandler.createNewBoard(nameOfNewBoard);
+            location.reload()
+        });
+    },
 
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
