@@ -13,7 +13,7 @@ let dom = {
         for (let i = 0; i < boards.length ; i++) {
 
             let new_board = document.createElement("div");
-            new_board.className = "box" ;
+            new_board.className = "box row mb-4"; //data-toggle=\"collapse\" data-target=\"statuses\"";
             new_board.id = boards[i]['id'];
             document.getElementById("container").appendChild(new_board);
             new_board.addEventListener("click", function () {
@@ -36,7 +36,7 @@ let dom = {
 
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
-            newTitle.className='header';
+            newTitle.className='header col-12';
             document.getElementById(i+1).appendChild(newTitle);
 
 
@@ -44,6 +44,7 @@ let dom = {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
                 new_status.className='statuses';
+//                new_status.id='statuses';
                 document.getElementById(i+1).appendChild(new_status)
             }
 
@@ -81,7 +82,7 @@ let dom = {
 
     showCards: function (cards) {
         // shows the cards of a board
-        // it adds necessary event listeners also
+        // it adds necessary event listeners al so
     },
 
     appendToElement: function (elementToExtend, textToAppend, prepend = false) {
