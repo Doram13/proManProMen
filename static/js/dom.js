@@ -7,7 +7,7 @@ let dom = {
         // retrieves boards and makes showBoards called
     },
 
-    showBoards: function (boards) {
+    showBoards: function (boards, statuses) {
 
 
         for (let i = 0; i < boards.length ; i++) {
@@ -30,17 +30,28 @@ let dom = {
                 dataHandler._saveData()
             });
 
-            let newId = document.createElement("div");
-            newId.innerText = boards[i]['id'];
-            document.getElementById(i).appendChild(newId);
+            //let newId = document.createElement("div");
+            //newId.innerText = boards[i]['id'];
+            //document.getElementById(i).appendChild(newId);
 
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
+            newTitle.className='header';
             document.getElementById(i).appendChild(newTitle);
 
-            let newState = document.createElement("div");
-            newState.innerText = boards[i]['is_active'];
-            document.getElementById(i).appendChild(newState);
+
+            for (let j = 0; j < statuses.length  ; j++) {
+                let new_status = document.createElement("div");
+                new_status.innerText=statuses[j]['name'];
+                new_status.className='statuses';
+                document.getElementById(i).appendChild(new_status)
+            }
+
+
+
+            //let newState = document.createElement("div");
+            //newState.innerText = boards[i]['is_active'];
+            //document.getElementById(i).appendChild(newState);
 
 
 
