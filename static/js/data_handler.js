@@ -23,7 +23,7 @@ let dataHandler = {
     _saveData: function () {
 
 
-        localStorage.setItem(keyInLocalStorage, JSON.stringify(sampleData));
+        localStorage.setItem("proman-data", JSON.stringify(this._data));
 
         // it is not called from outside
         // saves the data from this._data to local storage
@@ -78,13 +78,14 @@ let dataHandler = {
 
 
     createNewBoard: function (boardTitle, callback) {
-        let id = this._data[boards].length + 1;
+        let id = this._data["boards"].length + 1;
         let newBoard =         {
             "id": id,
             "title": boardTitle,
             "is_active": true
         };
-        this._data['boards'].push(newBoard)
+        this._data['boards'].push(newBoard);
+        this._saveData()
 
         // creates new board, saves it and calls the callback function with its data
     },

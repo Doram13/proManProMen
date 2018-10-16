@@ -9,6 +9,13 @@ let dom = {
 
     showBoards: function (boards) {
 
+        const addBoardButton = document.createElement("div");
+        addBoardButton.innerText = "Create new board";
+        document.body.appendChild(addBoardButton);
+        addBoardButton.addEventListener("click", function () {
+           let nameOfNewBoard = prompt("Please enter the name of the board!", "New board")
+            dataHandler.createNewBoard(nameOfNewBoard)
+        });
 
         for (let i = 0; i < boards.length ; i++) {
 
