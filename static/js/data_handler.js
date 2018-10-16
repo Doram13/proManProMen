@@ -15,7 +15,7 @@ let dataHandler = {
 
         let read = localStorage.getItem("proman-data");
         this._data = JSON.parse(read);
-        console.log(this._data);
+
 
         // it is not called from outside
         // loads data from local storage, parses it and put into this._data property
@@ -30,23 +30,26 @@ let dataHandler = {
 
     init: function () {
         this._loadData();
-        this.getBoards();
+        //this.getBoards();
 
     },
 
     getBoards: function (callback) {
-        var board = this._data['boards'];
-
-        for (let i = 0; i < board.length ; i++) {
-            let board_data = board[i]
-            console.log(board_data);
-
-        }
+        let boards = this._data['boards'];
+        return boards;
 
         // the boards are retrieved and then the callback function is called with the boards
     },
 
     getBoard: function (boardId, callback) {
+        let board = this._data['boards'];
+
+        for (let i = 0; i < board.length ; i++) {
+            let board_data = board[i];
+            console.log(board_data);
+
+        }
+        return board;
         // the board is retrieved and then the callback function is called with the board
     },
 
