@@ -30,15 +30,27 @@ let dataHandler = {
 
     init: function () {
         this._loadData();
+        this.getBoards();
+
     },
 
     getBoards: function (callback) {
+        var board = this._data['boards'];
+
+        for (let i = 0; i < board.length ; i++) {
+            let board_data = board[i]
+            console.log(board_data);
+
+        }
+
         // the boards are retrieved and then the callback function is called with the boards
     },
 
     getBoard: function (boardId, callback) {
         // the board is retrieved and then the callback function is called with the board
     },
+
+
 
     getStatuses: function (callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
@@ -48,6 +60,8 @@ let dataHandler = {
         // the status is retrieved and then the callback function is called with the status
     },
 
+
+
     getCardsByBoardId: function (boardId, callback) {
         // the cards are retrieved and then the callback function is called with the cards
     },
@@ -55,6 +69,8 @@ let dataHandler = {
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card
     },
+
+
 
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
