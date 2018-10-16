@@ -28,7 +28,11 @@ let dataHandler = {
         // it is not called from outside
         // saves the data from this._data to local storage
     },
+    _deleteData: function() {
 
+
+
+    }
 
     init: function () {
         this._loadData();
@@ -58,6 +62,7 @@ let dataHandler = {
 
 
     getStatuses: function (callback) {
+
         // the statuses are retrieved and then the callback function is called with the statuses
     },
 

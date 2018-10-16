@@ -16,7 +16,19 @@ let dom = {
             new_board.className = "box" ;
             new_board.id = [i];
             document.getElementById("container").appendChild(new_board);
+            new_board.addEventListener("click", function () {
+                if (boards[i]["is_active"] === true){
+                    boards[i]["is_active"] = false;
+                    location.reload()
+                }
+                else{
+                    boards[i]["is_active"] = true;
+                    location.reload()
+                }
 
+                this.innerText = "clicked";
+                dataHandler._saveData()
+            });
 
             let newId = document.createElement("div");
             newId.innerText = boards[i]['id'];
