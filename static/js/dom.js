@@ -26,7 +26,6 @@ let dom = {
 
 
 
-
         }
 
         // shows boards appending them to #boards div

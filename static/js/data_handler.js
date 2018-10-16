@@ -76,6 +76,14 @@ let dataHandler = {
 
 
     createNewBoard: function (boardTitle, callback) {
+        let id = this._data[boards].length + 1;
+        let newBoard =         {
+            "id": id,
+            "title": boardTitle,
+            "is_active": true
+        };
+        this._data['boards'].push(newBoard)
+
         // creates new board, saves it and calls the callback function with its data
     },
 
