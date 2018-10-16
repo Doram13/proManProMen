@@ -14,7 +14,7 @@ let dom = {
 
             let new_board = document.createElement("div");
             new_board.className = "box" ;
-            new_board.id = [i];
+            new_board.id = boards[i]['id'];
             document.getElementById("container").appendChild(new_board);
             new_board.addEventListener("click", function () {
                 if (boards[i]["is_active"] === true){
@@ -37,14 +37,14 @@ let dom = {
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
             newTitle.className='header';
-            document.getElementById(i).appendChild(newTitle);
+            document.getElementById(i+1).appendChild(newTitle);
 
 
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
                 new_status.className='statuses';
-                document.getElementById(i).appendChild(new_status)
+                document.getElementById(i+1).appendChild(new_status)
             }
 
 
