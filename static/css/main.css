@@ -1,3 +1,10 @@
-#boards {
+#container {
     background-color: green;
+
+}
+
+
+.box {
+    display: flex;
+    flex-direction: row;
 }
