@@ -39,7 +39,7 @@ let dom = {
             newTitle.innerText = boards[i]['title'];
             newTitle.className='header col-12';
             new_board.setAttribute("data-toggle", "collapse");
-            new_board.setAttribute("data-target", "#statuses");
+            new_board.setAttribute("data-target", "#statuses" + i.toString());
             document.getElementById(i+1).appendChild(newTitle);
 
 
@@ -47,7 +47,7 @@ let dom = {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
                 new_status.className='collapse';
-                new_status.id='statuses';
+                new_status.id='statuses' + i.toString();
                 document.getElementById(i+1).appendChild(new_status)
             }
 
