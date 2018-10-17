@@ -39,7 +39,7 @@ let dom = {
             newTitle.innerText = boards[i]['title'];
             newTitle.className='header col-12';
             new_board.setAttribute("data-toggle", "collapse");
-            new_board.setAttribute("data-target", "#statuses" + i.toString());
+            new_board.setAttribute("data-target", ".collapse");
             document.getElementById(i+1).appendChild(newTitle);
 
 
@@ -47,8 +47,9 @@ let dom = {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
                 new_status.className='collapse';
-                new_status.id='statuses' + i.toString();
-                document.getElementById(i+1).appendChild(new_status)
+                new_status.id='statuses' + i.toString() + j.toString();
+                document.getElementById(i+1).appendChild(new_status);
+                dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString())
             }
 
 
@@ -91,7 +92,16 @@ let dom = {
         // retrieves cards and makes showCards called
     },
 
-    showCards: function (cards) {
+    showCards: function (cards, status, idToAppend) {
+        for (let i = 0; i <cards.length ; i++) {
+            let card = document.createElement("div");
+            card.innerText = cards[i]['title'];
+            card.className = "box row m-1";
+            if (cards[i]['status_id'] === status){
+                document.getElementById(idToAppend).appendChild(card);
+            }
+        }
+
         // shows the cards of a board
         // it adds necessary event listeners al so
     },
