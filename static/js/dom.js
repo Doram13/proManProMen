@@ -49,7 +49,8 @@ let dom = {
                 new_status.className='text-center text-white col-3 collapse collapse' + i.toString();
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
-                dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString())
+                dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
+                dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
             }
 
 
@@ -93,7 +94,7 @@ let dom = {
         // retrieves cards and makes showCards called
     },
 
-    showCards: function (cards, status, idToAppend) {
+    showCards: function (cards, status, idToAppend, boardID) {
         for (let i = 0; i <cards.length ; i++) {
             let card = document.createElement("div");
             card.innerText = cards[i]['title'];
@@ -102,7 +103,18 @@ let dom = {
                 document.getElementById(idToAppend).appendChild(card);
             }
         }
-
+        let addCard = document.createElement("div");
+        addCard.innerText = "Add New Card";
+        document.getElementById(idToAppend).appendChild(addCard)
+        addCard.addEventListener("click", function () {
+            let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
+            if (titleOfNewCard == null || titleOfNewCard == "") {
+            } else {
+                dataHandler.createNewCard(titleOfNewCard, boardID+1, status);
+                location.reload();
+            }
+        }
+        )
         // shows the cards of a board
         // it adds necessary event listeners al so
     },

@@ -44,17 +44,24 @@ let sampleData = {
             "order": 3
         },
         {
+            "id": 8,
+            "title": "task1.5",
+            "board_id": 1,
+            "status_id": 1,
+            "order": 4
+        },
+        {
             "id": 2,
             "title": "task2",
             "board_id": 1,
-            "status_id": 2,
-            "order": 2
+            "status_id": 1,
+            "order": 7
         },
         {
             "id": 3,
             "title": "task3",
             "board_id": 1,
-            "status_id": 4,
+            "status_id": 1,
             "order": 1
         },
         {

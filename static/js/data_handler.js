@@ -84,6 +84,9 @@ let dataHandler = {
                 cardsOfSpecificBoard.push(card)
             }
         }
+        cardsOfSpecificBoard = cardsOfSpecificBoard.sort(function(a,b){
+            return a.order-b.order
+        });
         return cardsOfSpecificBoard
         // the cards are retrieved and then the callback function is called with the cards
     },
@@ -120,13 +123,13 @@ let dataHandler = {
 
     createNewCard: function (cardTitle, boardId, statusId, callback) {
         let id = this._data["cards"].length + 1;
-
         let newCard = {
             "id": id,
             "title": cardTitle,
             "board_id": boardId,
             "status_id": statusId,
-            "order": 1
+
+            "order": 0
         };
         this._data['cards'].push(newCard);
         this._saveData();

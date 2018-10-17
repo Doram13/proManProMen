@@ -100,6 +100,8 @@ ENV/
 .idea/misc.xml
 .idea/modules.xml
 .idea/proManProMen.iml
+.idea/misc.xml
+.idea/proManProMen.iml
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
