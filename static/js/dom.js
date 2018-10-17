@@ -13,10 +13,11 @@ let dom = {
         for (let i = 0; i < boards.length ; i++) {
 
             let new_board = document.createElement("div");
-            new_board.className = "box row mb-4"; //data-toggle=\"collapse\" data-target=\"statuses\"";
+            new_board.className = "box row mb-4 collapse.show"; //data-toggle=\"collapse\" data-target=\"statuses\"";
             new_board.id = boards[i]['id'];
             document.getElementById("container").appendChild(new_board);
-            new_board.addEventListener("click", function () {
+
+           /* new_board.addEventListener("click", function () {
                 if (boards[i]["is_active"] === true){
                     boards[i]["is_active"] = false;
                     location.reload()
@@ -28,7 +29,7 @@ let dom = {
 
                 this.innerText = "clicked";
                 dataHandler._saveData()
-            });
+            });*/
 
             //let newId = document.createElement("div");
             //newId.innerText = boards[i]['id'];
@@ -37,14 +38,16 @@ let dom = {
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
             newTitle.className='header col-12';
+            new_board.setAttribute("data-toggle", "collapse");
+            new_board.setAttribute("data-target", "#statuses");
             document.getElementById(i+1).appendChild(newTitle);
 
 
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
-                new_status.className='statuses';
-//                new_status.id='statuses';
+                new_status.className='collapse';
+                new_status.id='statuses';
                 document.getElementById(i+1).appendChild(new_status)
             }
 
