@@ -2,66 +2,23 @@
 let dom = {
 
     loadBoards: function () {
-        let loadedBoards = dataHandler.getBoards();
-        return loadedBoards
+        dataHandler.getBoards(this.showBoards)
         // retrieves boards and makes showBoards called
     },
 
-    showBoards: function (boards, statuses) {
+    showBoards: function (boards) {
 
+        for (let board of boards) {
 
-        for (let i = 0; i < boards.length ; i++) {
-
-            let new_board = document.createElement("div");
-            new_board.className = "bg-dark border border-secondary row mb-4";
-            new_board.id = boards[i]['id'];
-            document.getElementById("container").appendChild(new_board);
-
-           /* new_board.addEventListener("click", function () {
-                if (boards[i]["is_active"] === true){
-                    boards[i]["is_active"] = false;
-                    location.reload()
-                }
-                else{
-                    boards[i]["is_active"] = true;
-                    location.reload()
-                }
-
-                this.innerText = "clicked";
-                dataHandler._saveData()
-            });*/
-
-            //let newId = document.createElement("div");
-            //newId.innerText = boards[i]['id'];
-            //document.getElementById(i).appendChild(newId);
+            let newBoard = document.createElement("div");
+            newBoard.className = "bg-dark border border-secondary text-light mb-4";
+            newBoard.id = board.id;
+            document.getElementById("board").appendChild(newBoard);
 
             let newTitle = document.createElement("div");
-            newTitle.innerText = boards[i]['title'];
-            newTitle.className='text-warning header col-12';
-            newTitle.setAttribute("data-toggle", "collapse");
-            newTitle.setAttribute("data-target", ".collapse" + i.toString());
-            document.getElementById(i+1).appendChild(newTitle);
-
-
-            for (let j = 0; j < statuses.length  ; j++) {
-                let new_status = document.createElement("div");
-                new_status.innerText=statuses[j]['name'];
-                new_status.className='text-center text-white col-3 collapse collapse' + i.toString();
-                new_status.id='statuses' + i.toString() + j.toString();
-                document.getElementById(i+1).appendChild(new_status);
-                dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
-                dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
-            }
-
-
-
-            //let newState = document.createElement("div");
-            //newState.innerText = boards[i]['is_active'];
-            //document.getElementById(i).appendChild(newState);
-
-
-
-
+            newTitle.className = "text-light";
+            newTitle.innerText = board.title;
+            document.getElementById(board.id).appendChild(newTitle);
 
         }
 
@@ -69,7 +26,7 @@ let dom = {
         // it adds necessary event listeners also
     },
 
-    setupCreateBoard: function(){
+    setupCreateBoard: function () {
 
         const addBoardButton = document.createElement("button");
         addBoardButton.innerText = "Create new board";
@@ -78,7 +35,7 @@ let dom = {
 
         addBoardButton.addEventListener("click", function () {
 
-           let nameOfNewBoard = prompt("Please enter the name of the board!", "New board");
+            let nameOfNewBoard = prompt("Please enter the name of the board!", "New board");
             if (nameOfNewBoard == null || nameOfNewBoard == "") {
             } else {
                 dataHandler.createNewBoard(nameOfNewBoard);
@@ -95,11 +52,11 @@ let dom = {
     },
 
     showCards: function (cards, status, idToAppend, boardID) {
-        for (let i = 0; i <cards.length ; i++) {
+        for (let i = 0; i < cards.length; i++) {
             let card = document.createElement("div");
             card.innerText = cards[i]['title'];
             card.className = "text-center border border-light m-1";
-            if (cards[i]['status_id'] === status){
+            if (cards[i]['status_id'] === status) {
                 document.getElementById(idToAppend).appendChild(card);
             }
         }
@@ -108,13 +65,13 @@ let dom = {
         addCard.className = "text-center col-12 btn";
         document.getElementById(idToAppend).appendChild(addCard);
         addCard.addEventListener("click", function () {
-            let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
-            if (titleOfNewCard == null || titleOfNewCard === "") {
-            } else {
-                dataHandler.createNewCard(titleOfNewCard, boardID+1, status);
-                location.reload();
+                let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
+                if (titleOfNewCard == null || titleOfNewCard === "") {
+                } else {
+                    dataHandler.createNewCard(titleOfNewCard, boardID + 1, status);
+                    location.reload();
+                }
             }
-        }
         )
         // shows the cards of a board
         // it adds necessary event listeners al so

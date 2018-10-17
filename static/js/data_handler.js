@@ -7,9 +7,7 @@
 let dataHandler = {
     keyInLocalStorage: 'proman-data', // the string that you use as a key in localStorage to save your application data
 
-    _data: {
-
-    }, // it contains the boards and their cards and statuses. It is not called from outside.
+    _data: {}, // it contains the boards and their cards and statuses. It is not called from outside.
 
     _loadData: function () {
 
@@ -36,13 +34,12 @@ let dataHandler = {
 
     init: function () {
         this._loadData();
-        //this.getBoards();
-
+        this._saveData();
     },
 
     getBoards: function (callback) {
         let boards = this._data['boards'];
-        return boards;
+        callback(boards)
 
         // the boards are retrieved and then the callback function is called with the boards
     },
@@ -63,7 +60,7 @@ let dataHandler = {
 
     getStatuses: function (callback) {
         let statuses = this._data['statuses']
-        return statuses
+        callback(statuses)
         // the statuses are retrieved and then the callback function is called with the statuses
     },
 

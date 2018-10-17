@@ -2,12 +2,9 @@
 
 function init() {
 
-    dataHandler.init();     // init data
+    dataHandler.init();
+    dom.loadBoards();
 
-    // loads the boards to the screen
-
-    dom.showBoards(dom.loadBoards(), dataHandler.getStatuses());
-    dom.setupCreateBoard()
 }
 
 init();
