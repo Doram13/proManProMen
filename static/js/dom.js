@@ -13,7 +13,7 @@ let dom = {
         for (let i = 0; i < boards.length ; i++) {
 
             let new_board = document.createElement("div");
-            new_board.className = "box row mb-4";
+            new_board.className = "bg-dark border border-secondary row mb-4";
             new_board.id = boards[i]['id'];
             document.getElementById("container").appendChild(new_board);
 
@@ -37,7 +37,7 @@ let dom = {
 
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
-            newTitle.className='header col-12';
+            newTitle.className='text-warning header col-12';
             new_board.setAttribute("data-toggle", "collapse");
             new_board.setAttribute("data-target", ".collapse" + i.toString());
             document.getElementById(i+1).appendChild(newTitle);
@@ -46,7 +46,7 @@ let dom = {
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
-                new_status.className='col-3 collapse collapse' + i.toString();
+                new_status.className='text-center text-white col-3 collapse collapse' + i.toString();
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
                 dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString())
@@ -70,9 +70,10 @@ let dom = {
 
     setupCreateBoard: function(){
 
-        const addBoardButton = document.createElement("div");
+        const addBoardButton = document.createElement("button");
         addBoardButton.innerText = "Create new board";
-        document.body.appendChild(addBoardButton);
+        addBoardButton.className = "btn btn-outline-dark text-white";
+        document.getElementById("main-title").appendChild(addBoardButton);
 
         addBoardButton.addEventListener("click", function () {
 
@@ -96,7 +97,7 @@ let dom = {
         for (let i = 0; i <cards.length ; i++) {
             let card = document.createElement("div");
             card.innerText = cards[i]['title'];
-            card.className = "box row m-1";
+            card.className = "text-center border border-light m-1";
             if (cards[i]['status_id'] === status){
                 document.getElementById(idToAppend).appendChild(card);
             }
