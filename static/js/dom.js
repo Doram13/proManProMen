@@ -72,8 +72,8 @@ let dom = {
 
         const addBoardButton = document.createElement("button");
         addBoardButton.innerText = "Create new board";
-        addBoardButton.className = "btn btn-outline-dark text-white";
-        document.getElementById("main-title").appendChild(addBoardButton);
+        addBoardButton.className = "col-12 btn btn-outline-dark text-white";
+        document.getElementById("container").appendChild(addBoardButton);
 
         addBoardButton.addEventListener("click", function () {
 

@@ -5,11 +5,9 @@ function init() {
     dataHandler.init();     // init data
 
     // loads the boards to the screen
-    dom.setupCreateBoard()
-    var x = dom.loadBoards();
 
-    console.log(x);
     dom.showBoards(dom.loadBoards(), dataHandler.getStatuses());
+    dom.setupCreateBoard()
 }
 
 init();
