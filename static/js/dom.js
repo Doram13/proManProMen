@@ -72,14 +72,22 @@ let dom = {
         const addBoardButton = document.createElement("div");
         addBoardButton.innerText = "Create new board";
         document.body.appendChild(addBoardButton);
+
         addBoardButton.addEventListener("click", function () {
+
            let nameOfNewBoard = prompt("Please enter the name of the board!", "New board");
-            dataHandler.createNewBoard(nameOfNewBoard);
-            location.reload()
+            if (nameOfNewBoard == null || nameOfNewBoard == "") {
+            } else {
+                dataHandler.createNewBoard(nameOfNewBoard);
+                location.reload();
+            }
+
         });
     },
 
     loadCards: function (boardId) {
+        let loadedCards = dataHandler.getCardsByBoardId(boardId);
+        return loadedCards
         // retrieves cards and makes showCards called
     },
 

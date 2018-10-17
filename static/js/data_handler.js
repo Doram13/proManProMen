@@ -74,10 +74,32 @@ let dataHandler = {
 
 
     getCardsByBoardId: function (boardId, callback) {
+        let cards = this._data['cards'];
+
+        let cardsOfSpecificBoard = [];
+
+        for (let i = 0; i < cards.length ; i++) {
+            let card = cards[i];
+            if (card['board_id'] === boardId ) {
+                cardsOfSpecificBoard.push(card)
+            }
+        }
+        return cardsOfSpecificBoard
         // the cards are retrieved and then the callback function is called with the cards
     },
 
     getCard: function (cardId, callback) {
+        let cards = this._data['cards'];
+
+        let specificCard = [];
+
+        for (let i = 0; i < cards.length ; i++) {
+            let card = cards[i];
+            if (card['id'] === cardId ) {
+                specificCard.push(card)
+            }
+        }
+        return specificCard[0]
         // the card is retrieved and then the callback function is called with the card
     },
 
@@ -97,6 +119,18 @@ let dataHandler = {
     },
 
     createNewCard: function (cardTitle, boardId, statusId, callback) {
+        let id = this._data["cards"].length + 1;
+
+        let newCard = {
+            "id": id,
+            "title": cardTitle,
+            "board_id": boardId,
+            "status_id": statusId,
+            "order": 1
+        };
+        this._data['cards'].push(newCard);
+        this._saveData();
+
         // creates new card, saves it and calls the callback function with its data
     }
     // here comes more features
