@@ -105,7 +105,7 @@ let dom = {
         }
         let addCard = document.createElement("div");
         addCard.innerText = "Add New Card";
-        addCard.className = "text-center col-12 btn btn-outline-light btn-sm";
+        addCard.className = "text-center col-12 btn";
         document.getElementById(idToAppend).appendChild(addCard);
         addCard.addEventListener("click", function () {
             let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
