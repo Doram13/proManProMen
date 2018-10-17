@@ -38,8 +38,8 @@ let dom = {
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
             newTitle.className='text-warning header col-12';
-            new_board.setAttribute("data-toggle", "collapse");
-            new_board.setAttribute("data-target", ".collapse" + i.toString());
+            newTitle.setAttribute("data-toggle", "collapse");
+            newTitle.setAttribute("data-target", ".collapse" + i.toString());
             document.getElementById(i+1).appendChild(newTitle);
 
 
