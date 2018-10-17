@@ -13,7 +13,7 @@ let dom = {
         for (let i = 0; i < boards.length ; i++) {
 
             let new_board = document.createElement("div");
-            new_board.className = "box row mb-4 collapse.show"; //data-toggle=\"collapse\" data-target=\"statuses\"";
+            new_board.className = "box row mb-4";
             new_board.id = boards[i]['id'];
             document.getElementById("container").appendChild(new_board);
 
