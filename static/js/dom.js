@@ -39,14 +39,14 @@ let dom = {
             newTitle.innerText = boards[i]['title'];
             newTitle.className='header col-12';
             new_board.setAttribute("data-toggle", "collapse");
-            new_board.setAttribute("data-target", ".collapse");
+            new_board.setAttribute("data-target", ".collapse" + i.toString());
             document.getElementById(i+1).appendChild(newTitle);
 
 
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
-                new_status.className='collapse';
+                new_status.className='col-3 collapse collapse' + i.toString();
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
                 dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString())
