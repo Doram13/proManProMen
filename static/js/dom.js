@@ -109,7 +109,7 @@ let dom = {
         document.getElementById(idToAppend).appendChild(addCard);
         addCard.addEventListener("click", function () {
             let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
-            if (titleOfNewCard == null || titleOfNewCard == "") {
+            if (titleOfNewCard == null || titleOfNewCard === "") {
             } else {
                 dataHandler.createNewCard(titleOfNewCard, boardID+1, status);
                 location.reload();
