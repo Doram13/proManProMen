@@ -51,13 +51,12 @@ let dom = {
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
                 dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
-                dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
+
+                dragula([document.getElementById('statuses' + i.toString() + j.toString()),
+                    document.getElementById('statuses' + i.toString() + j.toString())]);
+
+
             }
-
-
-
-
-
 
         }
 
@@ -95,15 +94,17 @@ let dom = {
             let card = document.createElement("div");
             card.innerText = cards[i]['title'];
             card.className = "text-center border border-light m-1";
+
+            card.setAttribute("data-order", cards[i]['order']);
             if (cards[i]['status_id'] === status){
                 document.getElementById(idToAppend).appendChild(card);
             }
         }
-        let addCard = document.createElement("div");
-        addCard.innerText = "Add New Card";
-        addCard.className = "text-center col-12 btn";
-        document.getElementById(idToAppend).appendChild(addCard);
-        addCard.addEventListener("click", function () {
+        let addCardButton = document.createElement("div");
+        addCardButton.innerText = "Add New Card";
+        addCardButton.className = "text-center col-12 btn";
+        document.getElementById(idToAppend).appendChild(addCardButton);
+        addCardButton.addEventListener("click", function () {
             let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
             if (titleOfNewCard == null || titleOfNewCard === "") {
             } else {
