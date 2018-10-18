@@ -19,5 +19,4 @@ div.text-center.col-12.btn{
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    pointer-events: none;
 }

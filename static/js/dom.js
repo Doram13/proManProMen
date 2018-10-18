@@ -12,12 +12,13 @@ let dom = {
 
         for (let i = 0; i < boards.length ; i++) {
 
-            let new_board = document.createElement("div");
-            new_board.className = "bg-dark border border-secondary row mb-4";
-            new_board.id = boards[i]['id'];
-            document.getElementById("container").appendChild(new_board);
+            let board = document.createElement("div");
+            board.className = "bg-dark border border-secondary row mb-4";
+            board.id = boards[i]['id'];
 
-           /* new_board.addEventListener("click", function () {
+            document.getElementById("container").appendChild(board);
+
+           /* board.addEventListener("click", function () {
                 if (boards[i]["is_active"] === true){
                     boards[i]["is_active"] = false;
                     location.reload()
@@ -37,7 +38,7 @@ let dom = {
 
             let newTitle = document.createElement("div");
             newTitle.innerText = boards[i]['title'];
-            newTitle.className='text-warning header col-12';
+            newTitle.className='text-warning header col-12 panel-collapse collapse show';
             newTitle.setAttribute("data-toggle", "collapse");
             newTitle.setAttribute("data-target", ".collapse" + i.toString());
             document.getElementById(i+1).appendChild(newTitle);
@@ -46,18 +47,13 @@ let dom = {
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
-                new_status.className='text-center text-white col-3 collapse collapse' + i.toString();
+                new_status.className='text-center text-white col-3 collapse collapse' + i.toString() + " show";
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
                 dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
                 dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
             }
 
-
-
-            //let newState = document.createElement("div");
-            //newState.innerText = boards[i]['is_active'];
-            //document.getElementById(i).appendChild(newState);
 
 
 
