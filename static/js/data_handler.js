@@ -143,8 +143,9 @@ let dataHandler = {
             let dbId = card.dataset.cardId;
             let dbCard = this.getCard(dbId);
             dbCard.order = i;
+            this._saveData();
         }
-        this._saveData();
+
 
     }
     // here comes more features

@@ -50,8 +50,9 @@ let dom = {
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
                 dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
-                let drag = dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
-                drag.on('drop',dataHandler.saveDragData(boards[i]));
+                var drag = dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
+                drag.on(ondrop ,dataHandler.saveDragData(boards[i]));
+                var element = document.getElementById('statuses' + i.toString() + j.toString())
 
             }
 
@@ -65,8 +66,7 @@ let dom = {
 
 
 
-
-
+            element.addEventListener("drop", dataHandler.saveDragData(boards[i]))
         }
 
         // shows boards appending them to #boards div
@@ -139,6 +139,8 @@ let dom = {
         }
 
         return elementToExtend.lastChild;
-    }
+    },
+
+
     // here comes more features
-};
+}
