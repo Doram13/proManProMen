@@ -91,18 +91,16 @@ let dataHandler = {
         // the cards are retrieved and then the callback function is called with the cards
     },
 
-    getCard: function (cardId, callback) {
+    getCard: function (cardId) {
         let cards = this._data['cards'];
-
-        let specificCard = [];
 
         for (let i = 0; i < cards.length ; i++) {
             let card = cards[i];
-            if (card['id'] === cardId ) {
-                specificCard.push(card)
+            if (card['id'] == cardId ) {
+                return card
             }
         }
-        return specificCard[0]
+
         // the card is retrieved and then the callback function is called with the card
     },
 
@@ -135,6 +133,19 @@ let dataHandler = {
         this._saveData();
 
         // creates new card, saves it and calls the callback function with its data
+    },
+
+    saveDragData: function (board) {
+        let cardsToSave = document.getElementById(board.id).getElementsByClassName('task');
+
+        for (let i = 0; i < cardsToSave.length; i++) {
+            let card = cardsToSave[i];
+            let dbId = card.dataset.cardId;
+            let dbCard = this.getCard(dbId);
+            dbCard.order = i;
+        }
+        this._saveData();
+
     }
     // here comes more features
 };

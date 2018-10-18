@@ -96,4 +96,11 @@ let sampleData = {
 };
 
 localStorage.setItem(keyInLocalStorage, JSON.stringify(sampleData));
-
+/*
+let card = cardsToSave[i];
+            let dbTitle = card['Title'];
+            if (dbTitle == this._data['cards']['Title']) {
+                var dbId = this._data['cards']['id']
+            }
+           let dbCard = this.getCard(dbId);
+            dbCard['order'] = i;

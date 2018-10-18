@@ -46,12 +46,16 @@ let dom = {
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
                 new_status.innerText=statuses[j]['name'];
-                new_status.className='text-center text-white col-3 collapse collapse' + i.toString();
+                new_status.className='text-center text-white col-3 collapse collapse' + i.toString() + " show";
                 new_status.id='statuses' + i.toString() + j.toString();
                 document.getElementById(i+1).appendChild(new_status);
                 dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
-                dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
+                let drag = dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
+                drag.on('drop',dataHandler.saveDragData(boards[i]));
+
             }
+
+
 
 
 
@@ -98,8 +102,9 @@ let dom = {
         for (let i = 0; i <cards.length ; i++) {
             let card = document.createElement("div");
             card.innerText = cards[i]['title'];
-            card.className = "text-center border border-light m-1";
+            card.className = "task text-center border border-light m-1";
             if (cards[i]['status_id'] === status){
+                card.dataset['cardId'] = cards[i]['id'];
                 document.getElementById(idToAppend).appendChild(card);
             }
         }
