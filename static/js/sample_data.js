@@ -24,7 +24,7 @@ let sampleData = {
     ],
     "boards": [
         {
-            "id": 1,
+            "id": 3,
             "title": "Test Board 1",
             "is_active": true
         },

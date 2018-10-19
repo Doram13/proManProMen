@@ -34,7 +34,6 @@ let dataHandler = {
 
     init: function () {
         this._loadData();
-        this._saveData();
     },
 
     getBoards: function (callback) {
@@ -84,7 +83,7 @@ let dataHandler = {
         cardsOfSpecificBoard = cardsOfSpecificBoard.sort(function(a,b){
             return a.order-b.order
         });
-        return cardsOfSpecificBoard
+        callback(cardsOfSpecificBoard)
         // the cards are retrieved and then the callback function is called with the cards
     },
 
@@ -99,23 +98,38 @@ let dataHandler = {
                 specificCard.push(card)
             }
         }
-        return specificCard[0]
+        callback(specificCard[0])
         // the card is retrieved and then the callback function is called with the card
     },
 
 
 
     createNewBoard: function (boardTitle, callback) {
-        let id = this._data["boards"].length + 1;
-        let newBoard =         {
+        let id = this.generateId();
+        let newBoardArray = [];
+        let newBoard = {
             "id": id,
             "title": boardTitle,
             "is_active": true
         };
-        this._data['boards'].push(newBoard);
-        this._saveData()
+        this._data.boards.push(newBoard);
+        newBoardArray.push(newBoard);
+        this._saveData();
+
+        callback(newBoardArray)
 
         // creates new board, saves it and calls the callback function with its data
+    },
+
+    deleteBoard: function (boardId) {
+        let newBoardArray = [];
+        for (let board of this._data.boards) {
+            if (board.id !== boardId) {
+                newBoardArray.push(board)
+            }
+        }
+        this._data.boards = newBoardArray;
+        this._saveData();
     },
 
     createNewCard: function (cardTitle, boardId, statusId, callback) {
@@ -132,6 +146,19 @@ let dataHandler = {
         this._saveData();
 
         // creates new card, saves it and calls the callback function with its data
+    },
+
+    generateId: function () {
+        let id = 1;
+        if (this._data.boards.length !== 0) {
+            let id = this._data.boards[this._data.boards.length - 1].id + 1;
+        }
+        for (let board of this._data.boards) {
+            if (board.id === id) {
+                id += 1
+            }
+        }
+        return id
     }
     // here comes more features
 };

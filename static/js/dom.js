@@ -11,35 +11,50 @@ let dom = {
         for (let board of boards) {
 
             let newBoard = document.createElement("div");
-            newBoard.className = "bg-dark border border-secondary text-light mb-4";
+            newBoard.className = "row bg-dark border border-secondary text-light mb-4";
             newBoard.id = board.id;
             document.getElementById("board").appendChild(newBoard);
 
             let newTitle = document.createElement("div");
-            newTitle.className = "text-light";
+            newTitle.className = "text-light col-10";
             newTitle.innerText = board.title;
             document.getElementById(board.id).appendChild(newTitle);
 
+            let newDeleteButton = document.createElement("button");
+            newDeleteButton.className = "btn btn-outline-dark text-white col-2";
+            newDeleteButton.innerText = "delete";
+            document.getElementById(board.id).appendChild(newDeleteButton);
+
+            newDeleteButton.addEventListener("click", function() {
+                dataHandler.deleteBoard(board.id);
+                document.getElementById("board").removeChild(document.getElementById(board.id))
+            })
+
         }
+
+        if (document.getElementById("createBoardButton")) {
+            document.getElementById("board").removeChild(document.getElementById("createBoardButton"));
+        }
+        dom.addBoardButton();
+
+
 
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
     },
 
-    setupCreateBoard: function () {
-
+    addBoardButton: function () {
         const addBoardButton = document.createElement("button");
         addBoardButton.innerText = "Create new board";
         addBoardButton.className = "col-12 btn btn-outline-dark text-white";
-        document.getElementById("container").appendChild(addBoardButton);
+        addBoardButton.id = "createBoardButton";
+        document.getElementById("board").appendChild(addBoardButton);
 
         addBoardButton.addEventListener("click", function () {
 
             let nameOfNewBoard = prompt("Please enter the name of the board!", "New board");
-            if (nameOfNewBoard == null || nameOfNewBoard == "") {
-            } else {
-                dataHandler.createNewBoard(nameOfNewBoard);
-                location.reload();
+            if (nameOfNewBoard != null && nameOfNewBoard !== "") {
+                dataHandler.createNewBoard(nameOfNewBoard, dom.showBoards)
             }
 
         });
