@@ -148,14 +148,11 @@ let dataHandler = {
         // creates new card, saves it and calls the callback function with its data
     },
 
-    generateId: function () {
-        let id = 1;
-        if (this._data.boards.length !== 0) {
-            let id = this._data.boards[this._data.boards.length - 1].id + 1;
-        }
+    generateId: function (id=1) {
         for (let board of this._data.boards) {
             if (board.id === id) {
-                id += 1
+                id = this.generateId(id + 1);
+                return id
             }
         }
         return id
