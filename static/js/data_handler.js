@@ -44,21 +44,18 @@ let dataHandler = {
     },
 
     getBoard: function (boardId, callback) {
-        let board = this._data['boards'];
-
-        for (let i = 0; i < board.length ; i++) {
-            let board_data = board[i];
-            console.log(board_data);
-
+        for (let board of this._data.boards) {
+            if (board.id === boardId) {
+                callback(board)
+            }
         }
-        return board;
         // the board is retrieved and then the callback function is called with the board
     },
 
 
 
     getStatuses: function (callback) {
-        let statuses = this._data['statuses']
+        let statuses = this._data.statuses;
         callback(statuses)
         // the statuses are retrieved and then the callback function is called with the statuses
     },
@@ -70,13 +67,13 @@ let dataHandler = {
 
 
     getCardsByBoardId: function (boardId, callback) {
-        let cards = this._data['cards'];
+        let cards = this._data.cards;
 
         let cardsOfSpecificBoard = [];
 
         for (let i = 0; i < cards.length ; i++) {
             let card = cards[i];
-            if (card['board_id'] === boardId ) {
+            if (card.board_id === boardId ) {
                 cardsOfSpecificBoard.push(card)
             }
         }
@@ -94,7 +91,7 @@ let dataHandler = {
 
         for (let i = 0; i < cards.length ; i++) {
             let card = cards[i];
-            if (card['id'] === cardId ) {
+            if (card.id === cardId ) {
                 specificCard.push(card)
             }
         }
@@ -133,7 +130,7 @@ let dataHandler = {
     },
 
     createNewCard: function (cardTitle, boardId, statusId, callback) {
-        let id = this._data["cards"].length + 1;
+        let id = this._data.cards.length + 1;
         let newCard = {
             "id": id,
             "title": cardTitle,

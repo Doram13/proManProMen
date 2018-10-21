@@ -25,6 +25,21 @@ let dom = {
             newDeleteButton.innerText = "delete";
             document.getElementById(board.id).appendChild(newDeleteButton);
 
+            let statusBlock = document.createElement("div");
+            statusBlock.className = "collapsed";
+            statusBlock.id = "collapse" + board.id.toString();
+            document.getElementById(board.id).appendChild(statusBlock);
+
+            let addCard = document.createElement("button");
+            addCard.innerText = "Add New Card";
+            addCard.className = "btn btn-outline-dark text-white";
+            document.getElementById(board.id).appendChild(addCard);
+            addCard.addEventListener("click", function () {
+                let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
+                if (titleOfNewCard != null && titleOfNewCard !== "") {
+                }
+            });
+
             newDeleteButton.addEventListener("click", function() {
                 dataHandler.deleteBoard(board.id);
                 document.getElementById("board").removeChild(document.getElementById(board.id))
@@ -52,7 +67,7 @@ let dom = {
 
         addBoardButton.addEventListener("click", function () {
 
-            let nameOfNewBoard = prompt("Please enter the name of the board!", "New board");
+            let nameOfNewBoard = prompt("Please enter the name of the board!", "Board " + dataHandler.generateId().toString());
             if (nameOfNewBoard != null && nameOfNewBoard !== "") {
                 dataHandler.createNewBoard(nameOfNewBoard, dom.showBoards)
             }
