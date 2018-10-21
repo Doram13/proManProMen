@@ -126,7 +126,6 @@ let dataHandler = {
             "title": cardTitle,
             "board_id": boardId,
             "status_id": statusId,
-
             "order": 0
         };
         this._data['cards'].push(newCard);
@@ -142,7 +141,8 @@ let dataHandler = {
             let card = cardsToSave[i];
             let dbId = card.dataset.cardId;
             let dbCard = this.getCard(dbId);
-            dbCard.order = i;
+            dbCard["order"] = i;
+            this._data["cards"].push(card);
             this._saveData();
         }
 

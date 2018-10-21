@@ -45,17 +45,15 @@ let dom = {
 
             for (let j = 0; j < statuses.length  ; j++) {
                 let new_status = document.createElement("div");
-                new_status.innerText=statuses[j]['name'];
-                new_status.className='text-center text-white col-3 collapse collapse' + i.toString() + " show";
-                new_status.id='statuses' + i.toString() + j.toString();
-                document.getElementById(i+1).appendChild(new_status);
-                dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() +j.toString(), i);
-                var drag = dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
-                drag.on(ondrop ,dataHandler.saveDragData(boards[i]));
-                var element = document.getElementById('statuses' + i.toString() + j.toString())
+                new_status.innerText = statuses[j]['name'];
+                new_status.className = 'text-center text-white col-3 collapse collapse' + i.toString() + " show";
+                new_status.id = 'statuses' + i.toString() + j.toString();
+                document.getElementById(i + 1).appendChild(new_status);
+                dom.showCards(dom.loadCards(i + 1), j + 1, 'statuses' + i.toString() + j.toString(), i);
+                let drag = dragula([document.getElementById('statuses' + i.toString() + j.toString()), document.getElementById('statuses' + i.toString() + j.toString())]);
+                let element = document.getElementById('statuses' + i.toString() + j.toString());
 
             }
-
 
 
 
@@ -66,7 +64,7 @@ let dom = {
 
 
 
-            element.addEventListener("drop", dataHandler.saveDragData(boards[i]))
+
         }
 
         // shows boards appending them to #boards div
@@ -143,4 +141,4 @@ let dom = {
 
 
     // here comes more features
-}
+};
