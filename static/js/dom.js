@@ -7,7 +7,7 @@ let dom = {
     },
 
     showBoards: function (boards) {
-
+        let boardCounter = 0;
         for (let board of boards) {
 
             let newBoard = document.createElement("div");
@@ -20,15 +20,32 @@ let dom = {
             newTitle.innerText = board.title;
             document.getElementById(board.id).appendChild(newTitle);
 
+            let stati = dataHandler.getStatuses();
+            for (let status of stati) {
+                let statusBar = document.createElement("div");
+                statusBar.className = "'text-center text-white col-3";
+                statusBar.id = "status" + status.id.toString() + '-' + board['id'].toString();
+                statusBar.innerText = status.name;
+                document.getElementById(board.id.toString()).appendChild(statusBar);
+
+
+            }
+            dom.loadCards(board.id); //TODO: "this.showCards is not a function"
+            boardCounter +=1;
+
+
+
+
+            let statusBlock = document.createElement("div");
+            statusBlock.className = "collapse";
+            statusBlock.id = "collapse" + board.id.toString();
+            statusBlock.innerText = ''; //Open/Close Board
+            document.getElementById(board.id).appendChild(statusBlock);
+
             let newDeleteButton = document.createElement("button");
             newDeleteButton.className = "btn btn-outline-dark text-white col-2";
             newDeleteButton.innerText = "delete";
             document.getElementById(board.id).appendChild(newDeleteButton);
-
-            let statusBlock = document.createElement("div");
-            statusBlock.className = "collapsed";
-            statusBlock.id = "collapse" + board.id.toString();
-            document.getElementById(board.id).appendChild(statusBlock);
 
             let addCard = document.createElement("button");
             addCard.innerText = "Add New Card";
@@ -43,8 +60,12 @@ let dom = {
             newDeleteButton.addEventListener("click", function() {
                 dataHandler.deleteBoard(board.id);
                 document.getElementById("board").removeChild(document.getElementById(board.id))
-            })
-
+            });
+            statusBlock.addEventListener("click", function() {
+                //statusBlock.addClass("collapse")
+                //I'm not able to add the "collapse" Class it says: "statusBlock.addClass is not a function"; TODO: solve it for hiding boards
+            });
+            //dom.loadCards(board.id, dom.showCards())
         }
 
         if (document.getElementById("createBoardButton")) {
@@ -76,33 +97,37 @@ let dom = {
     },
 
     loadCards: function (boardId) {
-        let loadedCards = dataHandler.getCardsByBoardId(boardId);
-        return loadedCards
+        //TODO: "dom.showCards(status.id, "status" + status.id.toString(), board.id.toString())"-ból kapja meg a status és az idToAppend(status id-t)!
+
+        dataHandler.getCardsByBoardId(boardId, dom.showCards)
         // retrieves cards and makes showCards called
+        //TODO: WHY doesn't getCardsByBoardID get called??
     },
 
-    showCards: function (cards, status, idToAppend, boardID) {
-        for (let i = 0; i < cards.length; i++) {
+    showCards: function (cards) {
+
+        for (let oneCard of cards) {
+
             let card = document.createElement("div");
-            card.innerText = cards[i]['title'];
+            card.innerText = oneCard['title'];
             card.className = "text-center border border-light m-1";
-            if (cards[i]['status_id'] === status) {
-                document.getElementById(idToAppend).appendChild(card);
-            }
+            let cardsStatus = "status" + oneCard['status_id'].toString() + '-' + oneCard['board_id'].toString();
+            document.getElementById(cardsStatus).appendChild(card);
+
         }
-        let addCard = document.createElement("div");
-        addCard.innerText = "Add New Card";
-        addCard.className = "text-center col-12 btn";
-        document.getElementById(idToAppend).appendChild(addCard);
-        addCard.addEventListener("click", function () {
-                let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
-                if (titleOfNewCard == null || titleOfNewCard === "") {
-                } else {
-                    dataHandler.createNewCard(titleOfNewCard, boardID + 1, status);
-                    location.reload();
-                }
-            }
-        )
+        //let addCard = document.createElement("div");
+//        addCard.innerText = "Add New Card";
+  //      addCard.className = "text-center col-12 btn";
+    //    document.getElementById(idToAppend).appendChild(addCard);
+      //  addCard.addEventListener("click", function () {
+        //        let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
+          //      if (titleOfNewCard == null || titleOfNewCard === "") {
+            //    } else {
+              //      dataHandler.createNewCard(titleOfNewCard, boardID + 1, status);
+                //    location.reload();
+      //          }
+       //     }
+        //)
         // shows the cards of a board
         // it adds necessary event listeners al so
     },

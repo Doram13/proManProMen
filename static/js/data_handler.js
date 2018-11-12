@@ -55,12 +55,18 @@ let dataHandler = {
 
 
     getStatuses: function (callback) {
-        let statuses = this._data.statuses;
-        callback(statuses)
+        return this._data.statuses;
+
+
         // the statuses are retrieved and then the callback function is called with the statuses
     },
 
     getStatus: function (statusId, callback) {
+        for (let status of this.data.statuses) {
+            if (status.id === statusId) {
+                callback(status)
+            }
+        }
         //let status = this._data['statuses']
     },
 
@@ -77,10 +83,12 @@ let dataHandler = {
                 cardsOfSpecificBoard.push(card)
             }
         }
-        cardsOfSpecificBoard = cardsOfSpecificBoard.sort(function(a,b){
-            return a.order-b.order
-        });
-        callback(cardsOfSpecificBoard)
+        callback(cardsOfSpecificBoard, boardId) //TODO: status, idToAppend, boardID);
+
+        //cardsOfSpecificBoard = cardsOfSpecificBoard.sort(function(a,b){
+         //   return a.order-b.order
+       // })
+
         // the cards are retrieved and then the callback function is called with the cards
     },
 
