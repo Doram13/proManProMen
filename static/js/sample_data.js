@@ -24,7 +24,7 @@ let sampleData = {
     ],
     "boards": [
         {
-            "id": 3,
+            "id": 1,
             "title": "Test Board 1",
             "is_active": true
         },
@@ -86,9 +86,9 @@ let sampleData = {
             "order": 1
         },
         {
-            "id": 6,
+            "id": 7,
             "title": "task7",
-            "board_id": 6,
+            "board_id": 1,
             "status_id": 3,
             "order": 1
         }

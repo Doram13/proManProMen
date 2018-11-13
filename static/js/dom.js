@@ -2,9 +2,16 @@
 let dom = {
 
     loadBoards: function () {
-        dataHandler.getBoards(this.showBoards)
+        dataHandler.getBoards(this.showBoards);
+        dom.drag()
         // retrieves boards and makes showBoards called
     },
+
+    drag: function () {
+        let column = document.getElementsByClassName('text-center text-white col-3');
+        dragula(column, column)
+    },
+
 
     showBoards: function (boards) {
         let boardCounter = 0;
@@ -30,10 +37,8 @@ let dom = {
 
 
             }
-            dom.loadCards(board.id); //TODO: "this.showCards is not a function"
+            dom.loadCards(board.id);
             boardCounter +=1;
-
-
 
 
             let statusBlock = document.createElement("div");
@@ -54,6 +59,9 @@ let dom = {
             addCard.addEventListener("click", function () {
                 let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
                 if (titleOfNewCard != null && titleOfNewCard !== "") {
+                    dataHandler.createNewCard(titleOfNewCard, board.id, 1, dom.showCard);
+
+
                 }
             });
 
@@ -91,29 +99,31 @@ let dom = {
             let nameOfNewBoard = prompt("Please enter the name of the board!", "Board " + dataHandler.generateId().toString());
             if (nameOfNewBoard != null && nameOfNewBoard !== "") {
                 dataHandler.createNewBoard(nameOfNewBoard, dom.showBoards)
+
             }
 
         });
     },
 
     loadCards: function (boardId) {
-        //TODO: "dom.showCards(status.id, "status" + status.id.toString(), board.id.toString())"-ból kapja meg a status és az idToAppend(status id-t)!
 
         dataHandler.getCardsByBoardId(boardId, dom.showCards)
         // retrieves cards and makes showCards called
-        //TODO: WHY doesn't getCardsByBoardID get called??
+
     },
+    showCard: function (oneCard) {
+        let card = document.createElement("div");
+        card.innerText = oneCard['title'];
+        card.className = "text-center border border-light m-1";
+        let cardsStatus = "status" + oneCard['status_id'].toString() + '-' + oneCard['board_id'].toString();
+        document.getElementById(cardsStatus).appendChild(card);
+    },
+
 
     showCards: function (cards) {
 
         for (let oneCard of cards) {
-
-            let card = document.createElement("div");
-            card.innerText = oneCard['title'];
-            card.className = "text-center border border-light m-1";
-            let cardsStatus = "status" + oneCard['status_id'].toString() + '-' + oneCard['board_id'].toString();
-            document.getElementById(cardsStatus).appendChild(card);
-
+            dom.showCard(oneCard)
         }
         //let addCard = document.createElement("div");
 //        addCard.innerText = "Add New Card";

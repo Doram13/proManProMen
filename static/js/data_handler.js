@@ -149,6 +149,7 @@ let dataHandler = {
         };
         this._data['cards'].push(newCard);
         this._saveData();
+        callback(newCard);
 
         // creates new card, saves it and calls the callback function with its data
     },
