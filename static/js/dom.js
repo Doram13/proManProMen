@@ -39,6 +39,7 @@ let dom = {
 
             }
 
+
              dragula([document.getElementById("status1" + '-' + board.id.toString()),
              document.getElementById("status2" + '-' + board.id.toString()),
              document.getElementById("status3" + '-' + board.id.toString()),
