@@ -6,11 +6,6 @@ let dom = {
         // retrieves boards and makes showBoards called
     },
 
-    dragula: function () {
-
-    },
-
-
     showBoards: function (boards) {
         let boardCounter = 0;
         for (let board of boards) {
