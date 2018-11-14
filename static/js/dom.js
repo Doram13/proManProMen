@@ -23,20 +23,27 @@ let dom = {
             document.getElementById("board").appendChild(newBoard);
 
             let newTitle = document.createElement("div");
-            newTitle.className = "text-light col-10";
+            newTitle.className = "text-light col-10 collapse collapse show";
+            newTitle.setAttribute("data-toggle", "collapse");
+            newTitle.setAttribute("data-target", ".collapse" + board.id.toString());
             newTitle.innerText = board.title;
             document.getElementById(board.id).appendChild(newTitle);
 
             let stati = dataHandler.getStatuses();
             for (let status of stati) {
                 let statusBar = document.createElement("div");
-                statusBar.className = "'text-center text-white col-3";
+                statusBar.className = "text-center text-white col-3 collapse" + board.id.toString() + " show";
                 statusBar.id = "status" + status.id.toString() + '-' + board['id'].toString();
                 statusBar.innerText = status.name;
                 document.getElementById(board.id.toString()).appendChild(statusBar);
 
-
             }
+
+             dragula([document.getElementById("status1" + '-' + board.id.toString()),
+             document.getElementById("status2" + '-' + board.id.toString()),
+             document.getElementById("status3" + '-' + board.id.toString()),
+             document.getElementById("status4" + '-' + board.id.toString())]);
+
             dom.loadCards(board.id);
             boardCounter +=1;
 
@@ -47,33 +54,28 @@ let dom = {
             statusBlock.innerText = ''; //Open/Close Board
             document.getElementById(board.id).appendChild(statusBlock);
 
-            let newDeleteButton = document.createElement("button");
-            newDeleteButton.className = "btn btn-outline-dark text-white col-2";
-            newDeleteButton.innerText = "delete";
-            document.getElementById(board.id).appendChild(newDeleteButton);
+
 
             let addCard = document.createElement("button");
             addCard.innerText = "Add New Card";
-            addCard.className = "btn btn-outline-dark text-white";
+            addCard.className = "btn btn-outline-dark text-white col-6";
             document.getElementById(board.id).appendChild(addCard);
             addCard.addEventListener("click", function () {
                 let titleOfNewCard = prompt("Please enter the name of the card!", "New Task");
                 if (titleOfNewCard != null && titleOfNewCard !== "") {
                     dataHandler.createNewCard(titleOfNewCard, board.id, 1, dom.showCard);
-
-
                 }
             });
+
+            let newDeleteButton = document.createElement("button");
+            newDeleteButton.className = "btn btn-outline-dark text-white col-6";
+            newDeleteButton.innerText = "Delete board " + board.id.toString();
+            document.getElementById(board.id).appendChild(newDeleteButton);
 
             newDeleteButton.addEventListener("click", function() {
                 dataHandler.deleteBoard(board.id);
                 document.getElementById("board").removeChild(document.getElementById(board.id))
             });
-            statusBlock.addEventListener("click", function() {
-                //statusBlock.addClass("collapse")
-                //I'm not able to add the "collapse" Class it says: "statusBlock.addClass is not a function"; TODO: solve it for hiding boards
-            });
-            //dom.loadCards(board.id, dom.showCards())
         }
 
         if (document.getElementById("createBoardButton")) {
