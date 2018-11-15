@@ -126,22 +126,6 @@ let dataHandler = {
         // creates new board, saves it and calls the callback function with its data
     },
 
-    changeCardStatus: function (cardId, statusId) {
-        let cards = this._data['cards'];
-
-        let specificCard = [];
-
-        for (let card of cards) {
-            if (card.id === parseInt(cardId) ) {
-                specificCard.push(card)
-            }
-        }
-
-        let cardToChange = specificCard[0];
-        cardToChange.status_id = parseInt(statusId);
-        this._saveData()
-    },
-
     deleteBoard: function (boardId) {
         let newBoardArray = [];
         for (let board of this._data.boards) {
@@ -178,6 +162,22 @@ let dataHandler = {
             }
         }
         return id
-    }
+    },
+
+    changeCardStatus: function (cardId, statusId) {
+        let cards = this._data['cards'];
+
+        let specificCard = [];
+
+        for (let card of cards) {
+            if (card.id === parseInt(cardId) ) {
+                specificCard.push(card)
+            }
+        }
+
+        let cardToChange = specificCard[0];
+        cardToChange.status_id = parseInt(statusId);
+        this._saveData()
+    },
     // here comes more features
 };

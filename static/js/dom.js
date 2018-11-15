@@ -27,23 +27,23 @@ let dom = {
                 let statusBar = document.createElement("div");
                 statusBar.className = "text-center text-white col-3 collapse" + board.id.toString() + " show";
                 statusBar.id = "status" + status.id.toString() + '-' + board['id'].toString();
-                statusBar.setAttribute("data-status", status.id);
                 statusBar.innerText = status.name;
+                statusBar.setAttribute("data-status", status.id);
                 document.getElementById(board.id.toString()).appendChild(statusBar);
 
             }
 
+             let drag = dragula([document.getElementById("status1" + '-' + board.id.toString()),
+             document.getElementById("status2" + '-' + board.id.toString()),
+             document.getElementById("status3" + '-' + board.id.toString()),
+             document.getElementById("status4" + '-' + board.id.toString())]);
 
-            let drake = dragula([document.getElementById("status1" + '-' + board.id.toString()),
-            document.getElementById("status2" + '-' + board.id.toString()),
-            document.getElementById("status3" + '-' + board.id.toString()),
-            document.getElementById("status4" + '-' + board.id.toString())]);
-
-            drake.on('drop', drop);
-
+            drag.on('drop', drop);
             function drop (el, target) {
-                statusId = target.getAttribute("data-status");
-                dataHandler.changeCardStatus(el.id, statusId);
+                let statusId = target.getAttribute('data-status');
+                let cardId = el.getAttribute("data-card_id");
+                dataHandler.changeCardStatus(cardId, statusId)
+
             }
 
             dom.loadCards(board.id);
@@ -118,9 +118,9 @@ let dom = {
     showCard: function (oneCard) {
         let card = document.createElement("div");
         card.innerText = oneCard['title'];
-        card.id = oneCard.id;
         card.className = "text-center border border-light m-1";
         let cardsStatus = "status" + oneCard['status_id'].toString() + '-' + oneCard['board_id'].toString();
+        card.setAttribute("data-card_id", oneCard.id);
         document.getElementById(cardsStatus).appendChild(card);
     },
 
