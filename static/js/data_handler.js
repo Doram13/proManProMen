@@ -8,7 +8,7 @@ let dataHandler = {
     keyInLocalStorage: 'proman-data', // the string that you use as a key in localStorage to save your application data
 
     _data: {
-        "statuses": [
+        statuses: [
         {
             "id": 1,
             "name": "New"
@@ -26,7 +26,7 @@ let dataHandler = {
             "name": "Done"
         }
     ],
-    "boards": [
+    boards: [
         {
             "id": 1,
             "title": "Test Board 1",
@@ -39,7 +39,7 @@ let dataHandler = {
             "is_active": true
         }
     ],
-    "cards": [
+    cards: [
         {
             "id": 1,
             "title": "task1",
