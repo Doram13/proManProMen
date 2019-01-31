@@ -7,7 +7,6 @@ let dom = {
     },
 
     showBoards: function (boards) {
-        let boardCounter = 0;
         for (let board of boards) {
 
             let newBoard = document.createElement("div");
@@ -47,7 +46,6 @@ let dom = {
             }
 
             dom.loadCards(board.id);
-            boardCounter +=1;
 
 
             let statusBlock = document.createElement("div");
