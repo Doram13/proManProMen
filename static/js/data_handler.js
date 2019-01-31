@@ -34,7 +34,7 @@ let dataHandler = {
         },
 
         {
-            id 2,
+            id: 2,
             title: "Test Board 2",
             is_active: true
         }
