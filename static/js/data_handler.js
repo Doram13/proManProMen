@@ -8,74 +8,94 @@ let dataHandler = {
     keyInLocalStorage: 'proman-data', // the string that you use as a key in localStorage to save your application data
 
     _data: {
-        statuses: [
+        "statuses": [
         {
-            id: 1,
-            name: "New"
+            "id": 1,
+            "name": "New"
         },
         {
-            id: 2,
-            name: "In progress"
+            "id": 2,
+            "name": "In progress"
         },
         {
-            id: 3,
-            name: "Testing"
+            "id": 3,
+            "name": "Testing"
         },
         {
-            id: 4,
-            name: "Done"
+            "id": 4,
+            "name": "Done"
         }
     ],
-    boards: [
+    "boards": [
         {
-            id: 1,
-            title: "Test Board 1",
-            is_active: true
+            "id": 1,
+            "title": "Test Board 1",
+            "is_active": true
         },
 
         {
-            id: 2,
-            title: "Test Board 2",
-            is_active: true
+            "id": 2,
+            "title": "Test Board 2",
+            "is_active": true
         }
     ],
-    cards: [
+    "cards": [
         {
-            id: 1,
-            title: "task1",
-            board_id: 1,
-            status_id: 1,
-            order: 3
+            "id": 1,
+            "title": "task1",
+            "board_id": 1,
+            "status_id": 1,
+            "order": 3
         },
         {
-            id: 8,
-            title: "task1.5",
-            board_id: 1,
-            status_id: 1,
+            "id": 8,
+            "title": "task1.5",
+            "board_id": 1,
+            "status_id": 1,
             "order": 4
         },
         {
-            id: 2,
-            title: "task2",
-            board_id: 1,
-            status_id: 1,
-            order: 7
+            "id": 2,
+            "title": "task2",
+            "board_id": 1,
+            "status_id": 1,
+            "order": 7
         },
         {
-            id: 3,
-            title: "task3",
-            board_id: 1,
-            status_id: 1,
-            order: 1
+            "id": 3,
+            "title": "task3",
+            "board_id": 1,
+            "status_id": 1,
+            "order": 1
         },
         {
-            id: 4,
-            title: "task4",
-            board_id: 2,
-            status_id: 1,
-            order: 3
+            "id": 4,
+            "title": "task4",
+            "board_id": 2,
+            "status_id": 1,
+            "order": 3
+        },
+        {
+            "id": 5,
+            "title": "task5",
+            "board_id": 2,
+            "status_id": 2,
+            "order": 2
+        },
+        {
+            "id": 6,
+            "title": "task6",
+            "board_id": 2,
+            "status_id": 3,
+            "order": 1
+        },
+        {
+            "id": 7,
+            "title": "task7",
+            "board_id": 1,
+            "status_id": 3,
+            "order": 1
         }
-
     ]
     }, // it contains the boards and their cards and statuses. It is not called from outside.
 
@@ -103,6 +123,7 @@ let dataHandler = {
     },
 
     init: function () {
+        this._saveData();
         this._loadData();
     },
 
